@@ -34,12 +34,25 @@
 			.quote {
 				font-size: 24px;
 			}
+			
+			.render ul li{
+				display:inline;
+				padding:10px;
+				list-style:none;
+			}
 		</style>
 	</head>
 	<body>
 		<div class="container">
 			<div class="content">
 				<div class="title">Admin Only</div>
+				<div class="render">
+				@foreach($usr as $one)
+					{{$one->name}}<br>
+				@endforeach
+				<?=$usr->render()?>
+				</div>
+				
 			</div>
 		</div>
 	</body>

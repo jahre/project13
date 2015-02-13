@@ -10,8 +10,9 @@ class MainController extends Controller{
 	}
 	
 	public function getIndex(){
+	$users =\App\User::paginate(4);
+	return view('adminka.main')->with('usr', $users);
 	
-	return view('adminka.main');
 	
 	}
 	
