@@ -1,6 +1,7 @@
 <?php namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 use Illuminate\Contracts\Auth\Guard;
 
 class Admin {
@@ -31,20 +32,31 @@ class Admin {
 	 * @return mixed
 	 */
 	public function handle($request, Closure $next)
-	{
+	{	
+	
+		
 		if ($this->auth->guest())
 		{
-			if ($request->ajax())
-			{
-				return response('Unauthorized.', 401);
-			}
-			else
-			{
+				if ($request->ajax())
+				{
+					return response('Unauthorized.', 401);
+				}
+				else
+				{
+					return redirect()->guest('auth/login');
+				}
+		}
+		else
+		{	
+		if(!Auth::user()->isAdmin == 1){
 				return redirect()->guest('auth/login');
 			}
+				else
+				{
+				return $next($request);
+				}
+			
 		}
 
-		return $next($request);
 	}
-
 }

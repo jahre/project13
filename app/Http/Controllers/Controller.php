@@ -5,6 +5,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
 abstract class Controller extends BaseController {
+	public function __construct(){}
 
 	use DispatchesCommands, ValidatesRequests;
 
